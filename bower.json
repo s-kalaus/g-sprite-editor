@@ -1,0 +1,17 @@
+{
+    "name": "g-sprite-editor",
+    "private": true,
+    "dependencies": {
+        "jquery": "2.2.4",
+        "angular": "1.5.5",
+        "angular-material": "1.0.8",
+        "async": "1.5.2",
+        "lodash": "4.12.0",
+        "font-awesome": "4.6.3",
+        "dropzone": "4.3.0",
+        "angular-fabric": "1.0.0"
+    },
+    "resolutions": {
+        "angular": "1.5.5"
+    }
+}

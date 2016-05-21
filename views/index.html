@@ -1,0 +1,134 @@
+<!doctype html>
+<html ng-app="gSprite">
+    <head>
+        <title>Sprite Editor</title>
+        <link rel="stylesheet" href="build/%build_id%/stylesheets/main.css">
+    </head>
+    <body class="gs-body">
+        <div layout="column" layout-fill ng-controller="indexController" class="gs-frame" ng-class="{'gs-inited': vm.inited}">
+            <md-toolbar flex="none" class="md-menu-toolbar gs-toolbar">
+                <div layout="row">
+                    <md-toolbar-filler layout layout-align="center center">
+                        <i class="fa fa-file-image-o"></i>
+                    </md-toolbar-filler>
+                    <div>
+                        <h2 class="md-toolbar-tools">Sprite Generator</h2>
+                        <md-menu-bar>
+                            <md-menu>
+                                <button ng-click="vm.openJSON()">Open</button>
+                                <div gs-file-open></div>
+                            </md-menu>
+
+                            <md-menu>
+                                <button ng-click="$mdOpenMenu()">Save</button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.saveJSON()">JSON</md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.savePNG()">PNG</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+                        </md-menu-bar>
+                    </div>
+                </div>
+            </md-toolbar>
+            <section layout="row" flex>
+                <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="gs-sidenav-left" md-is-locked-open="$mdMedia('gt-sm')">
+                    <md-toolbar class="md-theme-indigo">
+                        <div class="md-toolbar-tools">
+                            <h1 class="md-toolbar-tools">Frames</h1>
+                            <span flex></span>
+                            <md-button ng-click="vm.addFrame()" class="md-icon-button" aria-label="Add Frame">
+                                <md-tooltip md-direction="right">Add new frame</md-tooltip>
+                                <i class="fa fa-plus"></i>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    <md-content>
+                        <div class="gs-frames-list">
+                            <md-card ng-repeat="frame in vm.frames" ng-click="vm.selectFrame(frame)" ng-class="{'gs-active': vm.currentFrame === frame}">
+                                <div gs-dropzone="vm.dropzone.instance" data-dropzone-config="vm.dropzone.config" data-event-handlers="vm.dropzone.handlers">
+                                    <div class="gs-image">
+                                        <div class="gs-canvas" gs-resize-screen="frame_{{ $index }}" gs-settings="vm.settings" ng-style="{'background-image': frame.data ? 'url(' + frame.data + ')' : 'none'}"></div>
+                                    </div>
+                                    <md-card-title>
+                                        <md-card-title-text>
+                                            <span class="md-headline">Frame #{{ frame.num }}</span>
+                                        </md-card-title-text>
+                                    </md-card-title>
+                                    <md-card-actions layout="row" layout-align="start center">
+                                        <md-button class="gs-upload">
+                                            <md-tooltip md-direction="top">Upload frame image</md-tooltip>
+                                            <i class="fa fa-upload"></i>
+                                        </md-button>
+                                        <md-button ng-click="vm.removeFrame($index)">
+                                            <md-tooltip md-direction="top">Remove frame</md-tooltip>
+                                            <i class="fa fa-trash"></i>
+                                        </md-button>
+                                    </md-card-actions>
+                                </div>
+                            </md-card>
+                        </div>
+                    </md-content>
+                </md-sidenav>
+                <md-content flex>
+                    <md-toolbar class="md-theme-indigo">
+                        <div class="md-toolbar-tools">
+                            <h1 class="md-toolbar-tools">{{ vm.currentFrame ? 'Frame #' + vm.currentFrame.num : 'Frame not selected' }}</h1>
+                            <span flex></span>
+                            <md-button ng-click="vm.openSidenav('gs-sidenav-left')" hide-gt-sm class="md-icon-button" aria-label="Open Frames">
+                                <md-tooltip md-direction="top">Open frames</md-tooltip>
+                                <i class="fa fa-caret-square-o-left"></i>
+                            </md-button>
+                            <md-button ng-click="vm.openSidenav('gs-sidenav-right')" hide-gt-sm class="md-icon-button" aria-label="Open Preview">
+                                <md-tooltip md-direction="top">Open Preview</md-tooltip>
+                                <i class="fa fa-caret-square-o-right"></i>
+                            </md-button>
+                        </div>
+                    </md-toolbar>
+                    <md-content>
+                        <md-card ng-if="!vm.processing" class="gs-workspace">
+                            <div class="gs-screen" gs-resize-screen="workspace" gs-settings="vm.settings">
+                                <div gs-fabric="vm.fabric" gs-settings="vm.settings"></div>
+                            </div>
+                        </md-card>
+                        <canvas ng-if="vm.processing" class="gs-screen-save" fabric="vm.fabricHelper"></canvas>
+                    </md-content>
+                </md-content>
+                <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="gs-sidenav-right" md-is-locked-open="$mdMedia('gt-sm')">
+                    <md-toolbar class="md-theme-indigo">
+                        <h1 class="md-toolbar-tools">Preview</h1>
+                    </md-toolbar>
+                    <md-content>
+                        <md-card class="layout-padding gs-settings">
+                            <md-content class="layout-padding" class="gs-settings">
+                                <form name="formSettings">
+                                    <div class="md-title">Default Size:</div>
+                                    <div layout="row">
+                                        <md-input-container flex>
+                                            <label>Width</label>
+                                            <input type="number" min="{{ vm.const.frame.minWidth }}" max="{{ vm.const.frame.maxWidth }}" ng-model="vm.settings.width">
+                                        </md-input-container>
+                                        <md-input-container flex>
+                                            <label>Height</label>
+                                            <input type="number" min="{{ vm.const.frame.minHeight }}" max="{{ vm.const.frame.maxHeight }}" ng-model="vm.settings.height">
+                                        </md-input-container>
+                                    </div>
+                                    <div class="md-title">FPS:</div>
+                                    <md-slider class="md-block gs-fps" md-discrete ng-model="vm.settings.fps" step="1" min="{{ vm.const.fps.minFps }}" max="{{ vm.const.fps.maxFps }}" aria-label="FPS"></md-slider>
+                                </form>
+                            </md-content>
+                        </md-card>
+                        <md-card class="gs-preview">
+                            <div class="gs-screen" gs-resize-screen="preview" gs-settings="vm.settings" ng-style="{'background-image': vm.frames[vm.preview.currentFrame].data ? 'url(' + vm.frames[vm.preview.currentFrame].data + ')' : 'none'}"></div>
+                        </md-card>
+                    </md-content>
+                </md-sidenav>
+            </section>
+        </div>
+        <script src="build/%build_id%/javascripts/all.js"></script>
+    </body>
+</html>
+

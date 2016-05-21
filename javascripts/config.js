@@ -1,0 +1,9 @@
+window.config = {
+    development: {
+
+    },
+    production: {
+        
+    }
+};
+

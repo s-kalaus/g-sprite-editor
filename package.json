@@ -1,0 +1,16 @@
+{
+    "name": "g-sprite-editor",
+    "version": "1.0.0",
+    "private": true,
+    "devDependencies": {
+        "async": "1.5.2",
+        "gulp": "3.9.1",
+        "gulp-if": "2.0.1",
+        "gulp-concat": "2.6.0",
+        "gulp-uglify": "1.5.3",
+        "gulp-sass": "2.3.1",
+        "gulp-watch": "4.3.5",
+        "gulp-replace": "0.5.4",
+        "gulp-clean-css": "2.0.7"
+    }
+}

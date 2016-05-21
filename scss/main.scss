@@ -1,0 +1,128 @@
+$fa-font-path: '/bower_components/font-awesome/fonts';
+
+@import '../bower_components/font-awesome/scss/font-awesome';
+@import '/bower_components/angular-material/angular-material.min.css';
+@import '/bower_components/dropzone/dist/min/basic.min.css';
+
+.gs-frame{
+    visibility: hidden;
+
+    &.gs-inited{
+        visibility: visible;
+    }
+
+    max-width: 1206px;
+}
+
+.gs-toolbar{
+    height: 96px;
+}
+
+md-toolbar-filler{
+    .fa{
+        color: #fff;
+    }
+}
+
+.gs-frames-list{
+
+    md-card{
+
+        .gs-image{
+            margin: 16px 16px 14px 16px;
+            background: #fff;
+            border: 1px solid #ccc;
+
+            .gs-canvas{
+                width: 150px;
+                height: 150px;
+                background: no-repeat 0% 0%;
+                background-size: cover;
+
+                image-rendering: optimizeSpeed;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: -o-crisp-edges;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
+            }
+        }
+
+        md-card-title{
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+
+        md-card-actions{
+            margin-top: 0px;
+
+            button{
+                padding: 0 8px;
+                min-width: 0;
+            }
+        }
+
+        &.gs-active{
+            background-color: #F2FCE2;
+        }
+    }
+}
+
+.gs-screen{
+    border: 1px solid #ccc;
+    background: #fff no-repeat 0% 0%;
+    background-size: cover;
+
+    image-rendering: optimizeSpeed;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: -o-crisp-edges;
+    image-rendering: pixelated;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.gs-preview{
+    padding: 16px;
+    background-color: #F2FCE2;
+}
+
+.gs-settings{
+    margin-bottom: 10px;
+}
+
+.gs-workspace{
+    padding: 16px;
+    background-color: #F2FCE2;
+
+    .gs-screen{
+        position: relative;
+
+        .canvas-container{
+            position: absolute!important;
+            top: 0px;
+            left: 0px;
+            width: 100%!important;
+            height: 100%!important;
+
+            canvas {
+                width: 100%!important;
+                height: 100%!important;
+                image-rendering: optimizeSpeed;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: -o-crisp-edges;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
+            }
+        }
+    }
+}
+
+
+.gs-screen-save{
+    display: none!important;
+}
+
+#gs-file-open{
+    display: none!important;
+}
