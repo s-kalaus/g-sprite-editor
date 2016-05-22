@@ -15,10 +15,13 @@
                         <h2 class="md-toolbar-tools">Sprite Generator</h2>
                         <md-menu-bar>
                             <md-menu>
-                                <button ng-click="vm.openJSON()">Open</button>
-                                <div gs-file-open></div>
+                                <button ng-click="$mdOpenMenu()">Open</button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="vm.openJSON()">JSON</md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
                             </md-menu>
-
                             <md-menu>
                                 <button ng-click="$mdOpenMenu()">Save</button>
                                 <md-menu-content>
@@ -31,6 +34,7 @@
                                 </md-menu-content>
                             </md-menu>
                         </md-menu-bar>
+                        <div gs-file-open></div>
                     </div>
                 </div>
             </md-toolbar>
