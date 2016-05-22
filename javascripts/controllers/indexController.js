@@ -272,7 +272,7 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
             element.setAttribute('download', 'filename.json');
             element.target = '_blank';
 
-            element.style.display = 'none';
+            element.style.position = 'absolute';
             document.body.appendChild(element);
 
             element.click();
@@ -291,7 +291,7 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
             element.setAttribute('download', 'filename.png');
             element.target = '_blank';
 
-            element.style.display = 'none';
+            element.style.position = 'absolute';
             document.body.appendChild(element);
 
             element.click();
