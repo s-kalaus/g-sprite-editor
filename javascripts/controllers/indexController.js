@@ -63,8 +63,8 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
             frame: {
                 minWidth: 8,
                 minHeight: 8,
-                maxWidth: 64,
-                maxHeight: 64,
+                maxWidth: 100,
+                maxHeight: 100,
                 defaultWidth: 32,
                 defaultHeight: 32
             },

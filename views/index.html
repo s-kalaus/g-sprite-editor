@@ -98,7 +98,9 @@
                                 <div gs-fabric="vm.fabric" gs-settings="vm.settings"></div>
                             </div>
                         </md-card>
-                        <canvas ng-if="vm.processing" class="gs-screen-save" fabric="vm.fabricHelper"></canvas>
+                        <div class="gs-screen-save-frame">
+                            <canvas ng-if="vm.processing" class="gs-screen-save" fabric="vm.fabricHelper"></canvas>
+                        </div>
                     </md-content>
                 </md-content>
                 <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="gs-sidenav-right" md-is-locked-open="$mdMedia('gt-sm')">
