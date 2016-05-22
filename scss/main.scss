@@ -4,6 +4,13 @@ $fa-font-path: '/bower_components/font-awesome/fonts';
 @import '/bower_components/angular-material/angular-material.min.css';
 @import '/bower_components/dropzone/dist/min/basic.min.css';
 
+
+.gs-body{
+    &.gs-resizing{
+        opacity: 0;
+    }
+}
+
 .gs-frame{
     visibility: hidden;
 

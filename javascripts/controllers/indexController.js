@@ -18,6 +18,24 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
 
                     $scope.vm.fabric.addImage($s.frame.data);
 
+                    var canvas = FabricCanvas.getCanvas();
+
+                    $timeout(function() {
+
+                        var objects = canvas.getObjects();
+
+                        var last = objects[objects.length - 1];
+
+                        last.originalLeft = 0;
+                        last.left = 0;
+
+                        last.originalTop = 0;
+                        last.top = 0;
+
+                        canvas.renderAll();
+                        canvas.calcOffset();
+                    });
+
                     this.removeAllFiles();
                 }
             },
@@ -32,7 +50,7 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
         settings: {
             width: 32,
             height: 32,
-            fps: 5
+            fps: 25
         },
         preview: {
             currentFrame: 0
@@ -52,8 +70,8 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
             },
             fps: {
                 minFps: 1,
-                maxFps: 15,
-                defaultFps: 5
+                maxFps: 60,
+                defaultFps: 25
             },
             canvasInitDelay: 500
         },
