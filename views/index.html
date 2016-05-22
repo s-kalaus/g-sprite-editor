@@ -38,12 +38,13 @@
                 <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="gs-sidenav-left" md-is-locked-open="$mdMedia('gt-sm')">
                     <md-toolbar class="md-theme-indigo">
                         <div class="md-toolbar-tools">
-                            <h1 class="md-toolbar-tools">Frames</h1>
-                            <span flex></span>
-                            <md-button ng-click="vm.addFrame()" class="md-icon-button" aria-label="Add Frame">
-                                <md-tooltip md-direction="right">Add new frame</md-tooltip>
-                                <i class="fa fa-plus"></i>
-                            </md-button>
+                            <h1>Frames</h1>
+                            <div flex class="gs-button-right">
+                                <md-button ng-click="vm.addFrame()" class="md-icon-button" aria-label="Add Frame">
+                                    <md-tooltip md-direction="right">Add new frame</md-tooltip>
+                                    <i class="fa fa-plus"></i>
+                                </md-button>
+                            </div>
                         </div>
                     </md-toolbar>
                     <md-content>
@@ -76,16 +77,15 @@
                 <md-content flex>
                     <md-toolbar class="md-theme-indigo">
                         <div class="md-toolbar-tools">
-                            <h1 class="md-toolbar-tools">{{ vm.currentFrame ? 'Frame #' + vm.currentFrame.num : 'Frame not selected' }}</h1>
-                            <span flex></span>
-                            <md-button ng-click="vm.openSidenav('gs-sidenav-left')" hide-gt-sm class="md-icon-button" aria-label="Open Frames">
-                                <md-tooltip md-direction="top">Open frames</md-tooltip>
-                                <i class="fa fa-caret-square-o-left"></i>
-                            </md-button>
-                            <md-button ng-click="vm.openSidenav('gs-sidenav-right')" hide-gt-sm class="md-icon-button" aria-label="Open Preview">
-                                <md-tooltip md-direction="top">Open Preview</md-tooltip>
-                                <i class="fa fa-caret-square-o-right"></i>
-                            </md-button>
+                            <h1>{{ vm.currentFrame ? 'Frame #' + vm.currentFrame.num : 'Frame not selected' }}</h1>
+                            <div flex class="gs-button-right">
+                                <md-button ng-click="vm.openSidenav('gs-sidenav-left')" hide-gt-sm class="md-icon-button" aria-label="Open Frames">
+                                    <i class="fa fa-caret-square-o-left"></i>
+                                </md-button>
+                                <md-button ng-click="vm.openSidenav('gs-sidenav-right')" hide-gt-sm class="md-icon-button" aria-label="Open Preview">
+                                    <i class="fa fa-caret-square-o-right"></i>
+                                </md-button>
+                            </div>
                         </div>
                     </md-toolbar>
                     <md-content>

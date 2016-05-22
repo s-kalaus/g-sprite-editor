@@ -4,12 +4,11 @@ $fa-font-path: '/bower_components/font-awesome/fonts';
 @import '/bower_components/angular-material/angular-material.min.css';
 @import '/bower_components/dropzone/dist/min/basic.min.css';
 
-
-.gs-body{
+/*.gs-body{
     &.gs-resizing{
         opacity: 0;
     }
-}
+}*/
 
 .gs-frame{
     visibility: hidden;
@@ -28,6 +27,22 @@ $fa-font-path: '/bower_components/font-awesome/fonts';
 md-toolbar-filler{
     .fa{
         color: #fff;
+    }
+}
+
+.md-sidenav-left{
+    overflow: hidden;
+}
+
+.md-toolbar-tools{
+
+    .gs-button-right{
+        text-align: right;
+        margin-right: -8px;
+
+        .md-button{
+            margin-right: 0px;
+        }
     }
 }
 
