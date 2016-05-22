@@ -29,6 +29,12 @@ directive('gsFabric', ['Fabric', 'FabricCanvas', '$timeout', 'utilService', func
 
                 canvas = FabricCanvas.getCanvas();
 
+                FabricCanvas.element.imageSmoothingEnabled = false;
+                FabricCanvas.element.mozImageSmoothingEnabled = false;
+                FabricCanvas.element.oImageSmoothingEnabled = false;
+                FabricCanvas.element.webkitImageSmoothingEnabled = false;
+                FabricCanvas.element.msImageSmoothingEnabled = false;
+
                 canvas.on('object:added', function() {
                     $scope.$emit('gs-canvas-changed');
                 });

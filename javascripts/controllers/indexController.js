@@ -270,6 +270,7 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
 
             element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(text));
             element.setAttribute('download', 'filename.json');
+            element.target = '_blank';
 
             element.style.display = 'none';
             document.body.appendChild(element);
@@ -288,6 +289,7 @@ controller('indexController', ['$scope', '$mdSidenav', '$mdToast', '$timeout', '
 
             element.setAttribute('href', fabric.getCanvasData());
             element.setAttribute('download', 'filename.png');
+            element.target = '_blank';
 
             element.style.display = 'none';
             document.body.appendChild(element);
